@@ -7,13 +7,11 @@ import { theme } from './theme';
 
 export default function App() {
   return (
-    <>
-      <View style={styles.root}>
-        <GestureHandlerRootView>
-          <AppNavigator />
-        </GestureHandlerRootView>
-      </View>
-    </>
+    <View style={styles.root}>
+      <GestureHandlerRootView>
+        <AppNavigator />
+      </GestureHandlerRootView>
+    </View>
   );
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -17,16 +18,32 @@ const FavoritesDrawerIcon = ({ color }: { color: string }) => (
   <IconComponent name="heart-outline" size={24} color={color} />
 );
 
+const BrushDrawerIcon = ({ color }: { color: string }) => (
+  <IconComponent name="color-palette-outline" size={24} color={color} />
+);
+
 const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator
         screenOptions={{
-          headerShown: false,
-          drawerActiveTintColor: theme.colors.text,
-          drawerInactiveTintColor: theme.colors.placeholder,
+          drawerActiveTintColor: theme.colors.placeholder,
+          drawerInactiveTintColor: theme.colors.text,
           drawerStyle: {
-            backgroundColor: theme.colors.surface,
+            backgroundColor: theme.colors.primary,
+            padding: 8,
+          },
+          headerTintColor: theme.colors.placeholder,
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+          headerRight: () => <BrushDrawerIcon color={theme.colors.placeholder} />,
+          headerRightContainerStyle: {
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            paddingRight: 16,
           },
         }}>
         <Drawer.Screen
