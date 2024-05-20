@@ -9,7 +9,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react', 'react-native'],
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react-native/no-inline-styles': 'off',
