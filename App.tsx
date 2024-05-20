@@ -1,26 +1,24 @@
 import React from 'react';
-import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Header} from './src/components/ui/header';
+import {Hero} from './src/components/ui/hero';
 
 export default function App() {
   return (
-    <View style={styles.root}>
-      <StatusBar hidden />
-      <Text style={styles.title}>
-        Welcome to Art Institute of Chicago Mobile App!
-      </Text>
-    </View>
+    <>
+      <View style={styles.root}>
+        <Header />
+        <Hero />
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f3f3f3',
     fontFamily: 'Montserrat',
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: 'regular',
   },
 });
