@@ -1,5 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { theme } from '../../../theme';
 
 export const Hero = () => {
   return (
@@ -17,11 +18,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 40,
-    color: '#556089',
+    color: theme.colors.primary,
   },
   subtitle: {
     fontSize: 18,
     marginTop: 10,
-    color: '#333',
+    color: theme.colors.text,
   },
 });

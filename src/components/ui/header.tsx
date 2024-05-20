@@ -1,13 +1,18 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, StyleSheet } from 'react-native';
+import { IconComponent } from '../icon/icon';
+import { theme } from '../../../theme';
 
 export const Header = () => {
   return (
     <View>
       <View style={styles.container}>
         <View style={styles.logoContainer}>
-          <Icon name="brush-outline" size={30} color="#e3deee" />
+          <IconComponent
+            name="brush-outline"
+            size={30}
+            color={theme.colors.background}
+          />
         </View>
       </View>
     </View>
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#556089',
+    backgroundColor: theme.colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },

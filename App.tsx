@@ -1,14 +1,14 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Header} from './src/components/ui/header';
-import {Hero} from './src/components/ui/hero';
+import { StyleSheet, View } from 'react-native';
+import AppNavigator from './src/navigation/app-navigator';
+import { theme } from './theme';
 
 export default function App() {
   return (
     <>
       <View style={styles.root}>
-        <Header />
-        <Hero />
+        <AppNavigator />
       </View>
     </>
   );
@@ -17,8 +17,7 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#f3f3f3',
+    backgroundColor: theme.colors.background,
     fontFamily: 'Montserrat',
   },
 });
