@@ -6,9 +6,11 @@ import ArtWorkCard from './art-work-card/art-work-card';
 
 interface ArtworkCardsListProps {
   artworks: Data[];
+  favorites: string[];
+  onFavoritePress: (id: string) => void;
 }
 
-const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks }) => {
+const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks, favorites, onFavoritePress }) => {
   return artworks.length === 0 ? (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>No artworks found.</Text>
@@ -30,6 +32,8 @@ const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks }) => {
           altText={item.thumbnail?.alt_text}
           artist_title={item.artist_title}
           classification_title={item.classification_title}
+          onFavoritePress={() => onFavoritePress(item.id.toString())}
+          isFavorite={favorites.includes(item.id.toString())}
         />
       )}
       keyExtractor={(item, index) => `${item.id}-${index}`}

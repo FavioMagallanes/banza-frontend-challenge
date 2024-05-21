@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { Image, StyleSheet, Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { theme } from '../../../theme';
+import { IconComponent } from '../icon/icon';
 
 type ArtWorkCardProps = {
   image?: string;
@@ -10,6 +11,8 @@ type ArtWorkCardProps = {
   provenanceText?: string;
   artist_title?: string;
   classification_title?: string;
+  onFavoritePress?: () => void;
+  isFavorite?: boolean;
 };
 
 const ArtWorkCard = ({
@@ -20,6 +23,8 @@ const ArtWorkCard = ({
   provenanceText,
   artist_title,
   classification_title,
+  onFavoritePress,
+  isFavorite,
 }: ArtWorkCardProps) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -42,6 +47,13 @@ const ArtWorkCard = ({
             onLoad={handleImageLoad}
             onError={handleImageLoad}
           />
+          <TouchableOpacity style={styles.favoriteIcon} onPress={onFavoritePress}>
+            <IconComponent
+              name={isFavorite ? 'heart' : 'heart-outline'}
+              size={32}
+              color={theme.colors.error}
+            />
+          </TouchableOpacity>
         </View>
       )}
       {loaded && (
@@ -49,7 +61,9 @@ const ArtWorkCard = ({
           <Text style={styles.title}>{title}</Text>
           <View style={styles.art_type}>
             {artist_title && <Text style={styles.artist_name}>{artist_title}</Text>}
-            {classification_title && <Text style={styles.text}>{classification_title}</Text>}
+            {classification_title && (
+              <Text style={styles.classification_text}>{classification_title}</Text>
+            )}
           </View>
           {provenanceText && <Text style={styles.text}>{provenanceText}</Text>}
           {altText && <Text style={styles.text}>{altText}</Text>}
@@ -68,6 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     padding: 14,
     marginBottom: 14,
+    position: 'relative',
   },
   imageContainer: {
     position: 'relative',
@@ -87,6 +102,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: theme.colors.primary,
+    marginTop: 8,
+    marginBottom: 8,
   },
   text: {
     fontSize: 14,
@@ -104,6 +121,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  classification_text: {
+    fontSize: 14,
+    color: theme.colors.gray,
+    fontWeight: 'bold',
+    marginTop: 8,
+  },
   loadingIndicator: {
     position: 'absolute',
     top: '50%',
@@ -112,5 +135,11 @@ const styles = StyleSheet.create({
   },
   hidden: {
     display: 'none',
+  },
+  favoriteIcon: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    zIndex: 1,
   },
 });

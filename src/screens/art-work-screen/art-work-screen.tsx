@@ -11,34 +11,54 @@ import { theme } from '../../../theme';
 
 const ArtworkScreen = () => {
   const [activeTab, setActiveTab] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [favorites, setFavorites] = useState<string[]>([]);
   const { filterArtworks } = useFilterArtworks();
   const { artworks, filteredArtworks, setFilteredArtworks, loading } =
     useInitialDataLoader(activeTab);
 
   const handleTabChange = (key: string) => {
     setActiveTab(key);
-    const filtered = filterArtworks(artworks, key);
+    const filtered = filterArtworks(artworks, key, searchQuery);
     setFilteredArtworks(filtered);
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    const filtered = filterArtworks(artworks, activeTab, query);
+    setFilteredArtworks(filtered);
+  };
+
+  const handleFavoritePress = (id: string) => {
+    setFavorites(prevFavorites =>
+      prevFavorites.includes(id)
+        ? prevFavorites.filter(favId => favId !== id)
+        : [...prevFavorites, id],
+    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <Hero />
-      <SearchInput />
+      <SearchInput placeholder="Search by artist name" onChangeText={handleSearch} />
       <SearchTab
         tabs={[
           { key: 'all', label: 'All' },
           { key: 'engraving', label: 'Engraving' },
           { key: 'sculpture', label: 'Sculpture' },
-          { key: 'book', label: 'Book' },
+          { key: 'painting', label: 'Painting' },
         ]}
         activeTab={activeTab}
         onChangeTab={handleTabChange}
       />
       {loading ? (
-        <ActivityIndicator size="large" color={theme.colors.primary} />
+        <ActivityIndicator style={styles.spinner} size="large" color={theme.colors.primary} />
       ) : (
-        <ArtworkCardsList artworks={filteredArtworks} />
+        <ArtworkCardsList
+          artworks={filteredArtworks}
+          favorites={favorites}
+          onFavoritePress={handleFavoritePress}
+        />
       )}
     </SafeAreaView>
   );
@@ -48,6 +68,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+  },
+  searchMessage: {
+    marginVertical: 10,
+    fontSize: 12,
+    color: 'gray',
+    textAlign: 'center',
+  },
+  spinner: {
+    flex: 1,
   },
 });
 
