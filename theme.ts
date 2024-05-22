@@ -6,7 +6,7 @@ export const theme = {
     text: '#867FB0',
     disabled: '#B8ADCD',
     placeholder: '#B8ADCD',
-    gray: '#566981',
+    gray: '#616382',
     error: '#f13a59',
   },
 };

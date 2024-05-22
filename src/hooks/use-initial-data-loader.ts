@@ -16,7 +16,7 @@ const useInitialDataLoader = (activeTab: string) => {
       try {
         const data = await fetchArtworks();
         setArtworks(data);
-        const filtered = filterArtworks(data, activeTab);
+        const filtered = filterArtworks(data, activeTab, '');
         setFilteredArtworks(filtered);
       } catch (error) {
         console.error('Error fetching initial artworks:', error);

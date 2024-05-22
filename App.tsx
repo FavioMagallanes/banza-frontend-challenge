@@ -4,12 +4,17 @@ import { StyleSheet, View } from 'react-native';
 import AppNavigator from './src/navigation/app-navigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { theme } from './theme';
+import { ArtworksProvider } from './src/art-work-context';
+import Toast from 'react-native-toast-message';
 
 export default function App() {
   return (
     <View style={styles.root}>
       <GestureHandlerRootView>
-        <AppNavigator />
+        <ArtworksProvider>
+          <AppNavigator />
+          <Toast />
+        </ArtworksProvider>
       </GestureHandlerRootView>
     </View>
   );

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { theme } from '../../theme';
-import { Data } from '../interfaces/response-data';
-import ArtWorkCard from './art-work-card/art-work-card';
+import { theme } from '../../../theme';
+import { Data } from '../../interfaces/response-data';
+import ArtWorkCard from '../art-work-card/art-work-card';
 
 interface ArtworkCardsListProps {
   artworks: Data[];

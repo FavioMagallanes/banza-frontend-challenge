@@ -47,7 +47,9 @@ const ArtWorkCard = ({
             onLoad={handleImageLoad}
             onError={handleImageLoad}
           />
-          <TouchableOpacity style={styles.favoriteIcon} onPress={onFavoritePress}>
+          <TouchableOpacity
+            style={[styles.favoriteIcon, isFavorite && styles.favoriteIconFavorite]}
+            onPress={onFavoritePress}>
             <IconComponent
               name={isFavorite ? 'heart' : 'heart-outline'}
               size={32}
@@ -138,8 +140,15 @@ const styles = StyleSheet.create({
   },
   favoriteIcon: {
     position: 'absolute',
-    bottom: 10,
-    right: 10,
+    bottom: 20,
+    right: 20,
     zIndex: 1,
+    elevation: 5, // Solo para Android
+  },
+  favoriteIconNormal: {
+    transform: [{ scale: 1 }],
+  },
+  favoriteIconFavorite: {
+    transform: [{ scale: 1.2 }],
   },
 });
