@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, VirtualizedList } from 'react-native';
 import { theme } from '../../../theme';
 import { Data } from '../../interfaces/response-data';
 import ArtWorkCard from '../art-work-card/art-work-card';
@@ -11,12 +11,15 @@ interface ArtworkCardsListProps {
 }
 
 const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks, favorites, onFavoritePress }) => {
+  const getItemCount = () => artworks.length;
+  const getItem = (data: Data[], index: number) => data[index];
+
   return artworks.length === 0 ? (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>No artworks found.</Text>
     </View>
   ) : (
-    <FlatList
+    <VirtualizedList<Data>
       data={artworks}
       renderItem={({ item, index }) => (
         <ArtWorkCard
@@ -38,8 +41,12 @@ const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks, favorites, onFa
         />
       )}
       keyExtractor={(item, index) => `${item.id}-${index}`}
+      getItemCount={getItemCount}
+      getItem={(data, index) => getItem(data, index)}
       contentContainerStyle={{ paddingHorizontal: 18 }}
       style={styles.flatList}
+      initialNumToRender={5}
+      maxToRenderPerBatch={5}
     />
   );
 };

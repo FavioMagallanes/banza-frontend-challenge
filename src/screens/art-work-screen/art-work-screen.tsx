@@ -7,11 +7,11 @@ import { StyleSheet, SafeAreaView, ActivityIndicator, Text, Pressable } from 're
 import { Hero } from '../../components/ui/hero';
 import SearchInput from '../../components/search-input/search-input';
 import SearchTab from '../../components/search-tab/search-tab';
-import ArtworkCardsList from '../../components/art-work-cards-list/art-work-cards-list';
 import { theme } from '../../../theme';
 import { tabs } from '../../constants/tabs';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { IconComponent } from '../../components/icon/icon';
+import ArtworkCardsList from '../../components/art-work-cards-list/art-work-cards-list';
 
 const ArtworkScreen: FC = () => {
   const { artworks, loading, error } = useContext(ArtworksContext)!;
