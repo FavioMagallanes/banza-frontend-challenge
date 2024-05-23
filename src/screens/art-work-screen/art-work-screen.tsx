@@ -29,8 +29,9 @@ const ArtworkScreen: FC = () => {
           <IconComponent name="menu" size={24} color={theme.colors.primary} />
         </Pressable>
       ),
+      headerShown: !loading,
     });
-  }, [navigation]);
+  }, [navigation, loading]);
 
   const handleTabChange = (key: string) => setActiveTab(key);
   const handleSearch = (query: string) => setSearchQuery(query);
