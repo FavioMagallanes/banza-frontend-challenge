@@ -4,11 +4,14 @@ import ArtworksContext from '../../context/art-work-context';
 import useFavoriteArtworks from '../../hooks/use-favorites-art-works';
 import ArtWorkFavoritesList from '../../components/art-work-favorites-list/art-work-favorites-list';
 import { theme } from '../../../theme';
+import { useNavigation } from '@react-navigation/native';
+import { IconComponent } from '../../components/icon/icon'; // Suponiendo que tienes un componente IconComponent
 
 const ArtWorksFavoritesScreen: FC = () => {
   const { favorites, removeFavorite, clearFavorites } = useFavoriteArtworks();
   const { artworks } = useContext(ArtworksContext)!;
   const [numColumns, setNumColumns] = useState(1);
+  const navigation = useNavigation();
 
   const favoritesWithData = artworks.filter(artwork => favorites.includes(artwork.id.toString()));
 
@@ -31,6 +34,9 @@ const ArtWorksFavoritesScreen: FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <Pressable onPress={() => navigation.goBack()}>
+          <IconComponent name="arrow-back" size={24} color={theme.colors.primary} />
+        </Pressable>
         <Pressable onPress={handleClearFavorites}>
           <Text style={styles.clearButton}>Clear All</Text>
         </Pressable>
