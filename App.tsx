@@ -1,10 +1,9 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import AppNavigator from './src/navigation/app-navigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { theme } from './theme';
 import { ArtworksProvider } from './src/context/art-work-context';
+import { DrawerNavigator } from './src/navigation/drawer-navigator';
 import Toast from 'react-native-toast-message';
 
 export default function App() {
@@ -12,7 +11,7 @@ export default function App() {
     <View style={styles.root}>
       <GestureHandlerRootView>
         <ArtworksProvider>
-          <AppNavigator />
+          <DrawerNavigator />
           <Toast />
         </ArtworksProvider>
       </GestureHandlerRootView>
@@ -23,7 +22,6 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: theme.colors.background,
     fontFamily: 'Montserrat',
   },
 });

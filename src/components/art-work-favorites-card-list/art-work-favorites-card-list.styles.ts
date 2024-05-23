@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   itemContainer: {
     margin: 8,
     padding: 8,
-    backgroundColor: theme.colors.background,
+    backgroundColor: 'white',
     borderRadius: 8,
     elevation: 2,
     height: 300,

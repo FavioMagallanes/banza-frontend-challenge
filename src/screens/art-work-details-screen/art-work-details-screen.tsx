@@ -18,7 +18,7 @@ export const ArtworkDetailsScreen = ({ route }: { route: ArtworkDetailsScreenRou
     throw new Error('ArtworksContext must be used within an ArtworksProvider');
   }
 
-  const { artworks, loading, error } = context;
+  const { artworks, loading } = context;
   const [artWork, setArtWork] = useState<Data | null>(null);
 
   useEffect(() => {
@@ -35,14 +35,6 @@ export const ArtworkDetailsScreen = ({ route }: { route: ArtworkDetailsScreenRou
         color={theme.colors.primary}
         style={styles.loadingIndicator}
       />
-    );
-  }
-
-  if (error) {
-    return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{error}</Text>
-      </View>
     );
   }
 
@@ -71,6 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.colors.background,
   },
   errorText: {
     color: theme.colors.text,

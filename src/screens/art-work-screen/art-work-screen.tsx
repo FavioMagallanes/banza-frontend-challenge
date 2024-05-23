@@ -1,28 +1,43 @@
-import React, { FC, useContext, useState } from 'react';
+/* eslint-disable react/no-unstable-nested-components */
+import React, { FC, useContext, useEffect, useState } from 'react';
 import ArtworksContext from '../../context/art-work-context';
 import { useFilteredArtworks } from '../../hooks/use-filtered-art-works';
 import { useFavorites } from '../../hooks/use-favorites';
-import { StyleSheet, SafeAreaView, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ActivityIndicator, Text, Pressable } from 'react-native';
 import { Hero } from '../../components/ui/hero';
 import SearchInput from '../../components/search-input/search-input';
 import SearchTab from '../../components/search-tab/search-tab';
 import ArtworkCardsList from '../../components/art-work-cards-list/art-work-cards-list';
 import { theme } from '../../../theme';
 import { tabs } from '../../constants/tabs';
-import { handleAddArtWorkToFavorites } from '../../utils/helpers';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { IconComponent } from '../../components/icon/icon';
 
 const ArtworkScreen: FC = () => {
   const { artworks, loading, error } = useContext(ArtworksContext)!;
   const [activeTab, setActiveTab] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const { favorites, handleAddArtWorkToFavorites } = useFavorites();
   const filteredArtworks = useFilteredArtworks(artworks, activeTab, searchQuery);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Pressable onPress={() => navigation.dispatch(DrawerActions.openDrawer)}>
+          <IconComponent name="menu" size={24} color={theme.colors.primary} />
+        </Pressable>
+      ),
+    });
+  }, [navigation]);
 
   const handleTabChange = (key: string) => setActiveTab(key);
   const handleSearch = (query: string) => setSearchQuery(query);
 
-  const handleFavoritePress = async (id: string) =>
-    await handleAddArtWorkToFavorites(id, favorites, addFavorite, removeFavorite);
+  const handleFavoritePress = async (id: string) => {
+    await handleAddArtWorkToFavorites(id);
+  };
 
   if (loading) {
     return <ActivityIndicator style={styles.spinner} size="large" color={theme.colors.primary} />;
@@ -46,7 +61,6 @@ const ArtworkScreen: FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
   },
   spinner: {
     flex: 1,

@@ -1,12 +1,18 @@
 /* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+  DrawerItemList,
+  createDrawerNavigator,
+} from '@react-navigation/drawer';
 
-import ArtworkNavigator from './art-work-navigator';
 import ArtWorksFavoritesScreen from '../screens/art-work-favorites-screen/art-work-favorites-screen';
 import { IconComponent } from '../components/icon/icon';
 import { theme } from '../../theme';
+import { ArtworkNavigator } from './art-work-navigator';
+import { useWindowDimensions } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,52 +24,41 @@ const FavoritesDrawerIcon = ({ color }: { color: string }) => (
   <IconComponent name="heart-outline" size={24} color={color} />
 );
 
-const BrushDrawerIcon = ({ color }: { color: string }) => (
-  <IconComponent name="color-palette-outline" size={24} color={color} />
-);
-
-const AppNavigator = () => {
+export const DrawerNavigator = () => {
+  const dimensions = useWindowDimensions();
   return (
     <NavigationContainer>
       <Drawer.Navigator
+        drawerContent={props => <DrawerContent {...props} />}
         screenOptions={{
+          drawerType: dimensions.width >= 768 ? 'permanent' : 'slide',
+          headerShown: false,
           drawerActiveTintColor: theme.colors.placeholder,
           drawerInactiveTintColor: theme.colors.text,
           drawerStyle: {
             backgroundColor: theme.colors.primary,
-            padding: 8,
-          },
-          headerTintColor: theme.colors.placeholder,
-          headerStyle: {
-            backgroundColor: theme.colors.primary,
-          },
-          headerRight: () => <BrushDrawerIcon color={theme.colors.placeholder} />,
-          headerRightContainerStyle: {
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            paddingRight: 16,
+            paddingVertical: 20,
           },
         }}>
         <Drawer.Screen
           name="Home"
           component={ArtworkNavigator}
-          options={{
-            title: 'Home',
-            drawerIcon: HomeDrawerIcon,
-          }}
+          options={{ title: 'Home', drawerIcon: HomeDrawerIcon }}
         />
         <Drawer.Screen
           name="Favorites"
           component={ArtWorksFavoritesScreen}
-          options={{
-            drawerIcon: FavoritesDrawerIcon,
-          }}
+          options={{ drawerIcon: FavoritesDrawerIcon }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 };
 
-export default AppNavigator;
+const DrawerContent = (props: DrawerContentComponentProps) => {
+  return (
+    <DrawerContentScrollView>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+};

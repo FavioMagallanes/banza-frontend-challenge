@@ -34,10 +34,7 @@ const ArtWorkCard = ({
   const [loaded, setLoaded] = useState(false);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-  const handleCardPress = () => {
-    navigation.navigate('ArtworkDetails', { id });
-  };
-
+  const handleCardPress = () => navigation.navigate('ArtworkDetails', { id });
   const handleImageLoad = () => setLoaded(true);
 
   return (

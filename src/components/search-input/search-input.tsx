@@ -34,8 +34,7 @@ export default InputSearch;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingHorizontal: 20,
     marginTop: 26,
   },
   inputContainer: {

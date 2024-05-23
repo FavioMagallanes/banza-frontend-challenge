@@ -1,18 +1,64 @@
+/* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { View } from 'react-native'; // Importa Text de 'react-native'
 import ArtworkScreen from '../screens/art-work-screen/art-work-screen';
 import { RootStackParamList } from '../interfaces/navigation';
 import { ArtworkDetailsScreen } from '../screens/art-work-details-screen/art-work-details-screen';
+import ArtWorksFavoritesScreen from '../screens/art-work-favorites-screen/art-work-favorites-screen';
+import { theme } from '../../theme';
+import { IconComponent } from '../components/icon/icon';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const ArtworkNavigator = () => {
+// Componente para el icono en el header
+const HeaderIcon = () => (
+  <View style={{ marginLeft: 16 }}>
+    <IconComponent name="color-palette-outline" size={30} color={theme.colors.primary} />
+  </View>
+);
+
+export const ArtworkNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Artworks" component={ArtworkScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="ArtworkDetails" component={ArtworkDetailsScreen} />
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: theme.colors.placeholder,
+        headerStyle: {
+          backgroundColor: theme.colors.primary,
+        },
+        headerRightContainerStyle: {
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          paddingRight: 16,
+        },
+      }}>
+      <Stack.Screen
+        name="Artworks"
+        component={ArtworkScreen}
+        options={{
+          title: '',
+          headerStyle: {
+            backgroundColor: 'transparent',
+            elevation: 0,
+          },
+          headerLeft: () => <HeaderIcon />,
+        }}
+      />
+      <Stack.Screen
+        name="ArtworkDetails"
+        component={ArtworkDetailsScreen}
+        options={{
+          headerShown: false,
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="Favorites"
+        component={ArtWorksFavoritesScreen}
+        options={{ title: 'Favorites' }}
+      />
     </Stack.Navigator>
   );
 };
-
-export default ArtworkNavigator;
