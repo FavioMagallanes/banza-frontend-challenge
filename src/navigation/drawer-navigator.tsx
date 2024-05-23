@@ -35,8 +35,9 @@ export const DrawerNavigator = () => {
           headerShown: false,
           drawerActiveTintColor: theme.colors.placeholder,
           drawerInactiveTintColor: theme.colors.text,
+          drawerActiveBackgroundColor: theme.colors.primary,
           drawerStyle: {
-            backgroundColor: theme.colors.primary,
+            backgroundColor: '#ebe8e8',
             paddingVertical: 20,
           },
         }}>
