@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from 'react';
-import ArtworksContext from '../../art-work-context';
+import ArtworksContext from '../../context/art-work-context';
 import { useFilteredArtworks } from '../../hooks/use-filtered-art-works';
 import { useFavorites } from '../../hooks/use-favorites';
 import { StyleSheet, SafeAreaView, ActivityIndicator, Text } from 'react-native';

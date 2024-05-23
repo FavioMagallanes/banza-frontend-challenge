@@ -21,6 +21,7 @@ const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks, favorites, onFa
       renderItem={({ item, index }) => (
         <ArtWorkCard
           key={`${item.id}-${index}`}
+          id={item.id}
           title={item.title}
           image={
             item.image_id

@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
-import ArtworksContext from '../../art-work-context';
+import ArtworksContext from '../../context/art-work-context';
 import useFavoriteArtworks from '../../hooks/use-favorites-art-works';
 import ArtWorkFavoritesList from '../../components/art-work-favorites-list/art-work-favorites-list';
 import { theme } from '../../../theme';

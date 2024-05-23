@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import { Data } from './interfaces/response-data';
-import { fetchArtworks } from './api/art-institute-api';
+import { Data } from '../interfaces/response-data';
+import { fetchArtworks } from '../api/art-institute-api';
 
-interface ArtworksContextType {
+export interface ArtworksContextType {
   artworks: Data[];
   setArtworks: React.Dispatch<React.SetStateAction<Data[]>>;
   loading: boolean;
