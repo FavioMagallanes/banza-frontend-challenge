@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, View, VirtualizedList } from 'react-native';
 import { theme } from '../../../theme';
 import { Data } from '../../interfaces/response-data';
-import ArtWorkCard from '../art-work-card/art-work-card';
+import { ArtWorkCard } from '../art-work-card/art-work-card';
 
 interface ArtworkCardsListProps {
   artworks: Data[];
@@ -10,7 +10,11 @@ interface ArtworkCardsListProps {
   onFavoritePress: (id: string) => void;
 }
 
-const ArtworkCardsList: FC<ArtworkCardsListProps> = ({ artworks, favorites, onFavoritePress }) => {
+export const ArtworkCardsList: FC<ArtworkCardsListProps> = ({
+  artworks,
+  favorites,
+  onFavoritePress,
+}) => {
   const getItemCount = () => artworks.length;
   const getItem = (data: Data[], index: number) => data[index];
 
@@ -65,5 +69,3 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
 });
-
-export default ArtworkCardsList;

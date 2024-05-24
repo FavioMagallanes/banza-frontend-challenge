@@ -1,18 +1,17 @@
 /* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { useWindowDimensions } from 'react-native';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItemList,
   createDrawerNavigator,
 } from '@react-navigation/drawer';
-
-import ArtWorksFavoritesScreen from '../screens/art-work-favorites-screen/art-work-favorites-screen';
+import { ArtWorksFavoritesScreen } from '../screens/art-work-favorites-screen/art-work-favorites-screen';
+import { ArtworkNavigator } from './art-work-navigator';
 import { IconComponent } from '../components/icon/icon';
 import { theme } from '../../theme';
-import { ArtworkNavigator } from './art-work-navigator';
-import { useWindowDimensions } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 

@@ -1,14 +1,14 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import ArtworksContext from '../../context/art-work-context';
-import useFavoriteArtworks from '../../hooks/use-favorites-art-works';
-import ArtWorkFavoritesList from '../../components/art-work-favorites-list/art-work-favorites-list';
-import { theme } from '../../../theme';
 import { useNavigation } from '@react-navigation/native';
+import { useFavorites } from '../../hooks/use-favorites';
+import { ArtWorkFavoritesList } from '../../components/art-work-favorites-list/art-work-favorites-list';
 import { IconComponent } from '../../components/icon/icon';
+import { theme } from '../../../theme';
 
-const ArtWorksFavoritesScreen: FC = () => {
-  const { favorites, removeFavorite, clearFavorites } = useFavoriteArtworks();
+export const ArtWorksFavoritesScreen: FC = () => {
+  const { favorites, removeFavorite, clearFavorites } = useFavorites();
   const { artworks } = useContext(ArtworksContext)!;
   const [numColumns, setNumColumns] = useState(1);
   const navigation = useNavigation();
@@ -82,5 +82,3 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
 });
-
-export default ArtWorksFavoritesScreen;

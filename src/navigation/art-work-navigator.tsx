@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View } from 'react-native'; // Importa Text de 'react-native'
-import ArtworkScreen from '../screens/art-work-screen/art-work-screen';
-import { RootStackParamList } from '../interfaces/navigation';
+import { View } from 'react-native';
+import { ArtworkScreen } from '../screens/art-work-screen/art-work-screen';
 import { ArtworkDetailsScreen } from '../screens/art-work-details-screen/art-work-details-screen';
-import ArtWorksFavoritesScreen from '../screens/art-work-favorites-screen/art-work-favorites-screen';
+import { ArtWorksFavoritesScreen } from '../screens/art-work-favorites-screen/art-work-favorites-screen';
+import { RootStackParamList } from '../interfaces/navigation';
 import { theme } from '../../theme';
 import { IconComponent } from '../components/icon/icon';
 

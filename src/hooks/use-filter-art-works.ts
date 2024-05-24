@@ -1,12 +1,12 @@
 import { Data } from '../interfaces/response-data';
 import { useCallback } from 'react';
 
-const useFilterArtworks = () => {
+export const useFilterArtworks = () => {
   const filterArtworks = useCallback((artworks: Data[], activeTab: string, searchQuery: string) => {
-    // Filtrar artworks según la pestaña activa y la búsqueda por nombre de artista
+    // Filtra artworks según la pestaña activa y la búsqueda por nombre de artista
     let filteredArtworks = artworks;
 
-    // Filtrar por pestaña activa
+    // Filtra por pestaña activa
     if (activeTab !== 'all') {
       filteredArtworks = artworks.filter((artwork: Data) =>
         artwork.classification_title
@@ -15,7 +15,7 @@ const useFilterArtworks = () => {
       );
     }
 
-    // Filtrar por nombre de artista
+    // Filtra por nombre de artista
     if (searchQuery) {
       filteredArtworks = filteredArtworks.filter((artwork: Data) =>
         artwork.artist_title
@@ -24,7 +24,7 @@ const useFilterArtworks = () => {
       );
     }
 
-    // Ordenar los artworks con imagen primero
+    // Ordena los artworks con imagen primero
     const artworksWithImage = filteredArtworks.filter(artwork => artwork.image_id);
     const artworksWithoutImage = filteredArtworks.filter(artwork => !artwork.image_id);
     return [...artworksWithImage, ...artworksWithoutImage];
@@ -32,5 +32,3 @@ const useFilterArtworks = () => {
 
   return { filterArtworks };
 };
-
-export default useFilterArtworks;

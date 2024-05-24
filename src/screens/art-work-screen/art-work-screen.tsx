@@ -4,16 +4,16 @@ import ArtworksContext from '../../context/art-work-context';
 import { useFilteredArtworks } from '../../hooks/use-filtered-art-works';
 import { useFavorites } from '../../hooks/use-favorites';
 import { StyleSheet, SafeAreaView, Text, Pressable } from 'react-native';
-import SearchInput from '../../components/search-input/search-input';
-import SearchTab from '../../components/search-tab/search-tab';
-import { theme } from '../../../theme';
 import { tabs } from '../../constants/tabs';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { IconComponent } from '../../components/icon/icon';
-import ArtworkCardsList from '../../components/art-work-cards-list/art-work-cards-list';
+import { ArtworkCardsList } from '../../components/art-work-cards-list/art-work-cards-list';
+import { SearchInput } from '../../components/search-input/search-input';
+import { SearchTab } from '../../components/search-tab/search-tab';
 import { LoaderAnimation } from '../../components/ui/loader-animation';
+import { theme } from '../../../theme';
 
-const ArtworkScreen: FC = () => {
+export const ArtworkScreen: FC = () => {
   const { artworks, loading, error } = useContext(ArtworksContext)!;
   const [activeTab, setActiveTab] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -72,5 +72,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-export default ArtworkScreen;

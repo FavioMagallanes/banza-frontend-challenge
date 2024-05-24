@@ -20,7 +20,7 @@ type ArtWorkCardProps = {
   isFavorite?: boolean;
 };
 
-const ArtWorkCard = React.memo(
+export const ArtWorkCard = React.memo(
   ({
     image,
     title,
@@ -89,5 +89,3 @@ const ArtWorkCard = React.memo(
 );
 
 ArtWorkCard.displayName = 'ArtWorkCard';
-
-export default ArtWorkCard;

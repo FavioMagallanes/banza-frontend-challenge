@@ -4,7 +4,7 @@ import { IconComponent } from '../icon/icon';
 import { theme } from '../../../theme';
 import { useNavigation } from '@react-navigation/native';
 
-const GoBackButton = () => {
+export const GoBackButton = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.backButton}>
@@ -14,8 +14,6 @@ const GoBackButton = () => {
     </View>
   );
 };
-
-export default GoBackButton;
 
 const styles = StyleSheet.create({
   backButton: {

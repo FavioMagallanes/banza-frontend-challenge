@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Tab from '../tab/tab';
+import { Tab } from '../tab/tab';
 
 type Tab = {
   key: string;
@@ -13,7 +13,7 @@ type Props = {
   onChangeTab: (key: string) => void;
 };
 
-const SearchTab: FC<Props> = ({ tabs, activeTab, onChangeTab }) => {
+export const SearchTab: FC<Props> = ({ tabs, activeTab, onChangeTab }) => {
   return (
     <View style={styles.container}>
       {tabs.map(tab => (
@@ -38,5 +38,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 });
-
-export default SearchTab;

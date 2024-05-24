@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { theme } from '../../../theme';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 type TabProps = {
   label: string;
@@ -8,7 +8,7 @@ type TabProps = {
   onPress: () => void;
 };
 
-const Tab: FC<TabProps> = ({ label, isActive, onPress }) => {
+export const Tab: FC<TabProps> = ({ label, isActive, onPress }) => {
   return (
     <TouchableOpacity
       style={[styles.tab, isActive && styles.activeTab]}
@@ -36,5 +36,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
-export default Tab;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { FlatList } from 'react-native';
-import { Data } from '../../interfaces/response-data';
 import { ArtWorkFavoritesCard } from '../art-work-favorites-card-list/art-work-favorites-card';
+import { Data } from '../../interfaces/response-data';
 
 interface ArtWorkFavoritesListProps {
   data: Data[];
@@ -9,7 +9,7 @@ interface ArtWorkFavoritesListProps {
   handleRemoveFavorite: (id: number) => void;
 }
 
-const ArtWorkFavoritesList: FC<ArtWorkFavoritesListProps> = ({
+export const ArtWorkFavoritesList: FC<ArtWorkFavoritesListProps> = ({
   data,
   numColumns,
   handleRemoveFavorite,
@@ -35,5 +35,3 @@ const ArtWorkFavoritesList: FC<ArtWorkFavoritesListProps> = ({
     />
   );
 };
-
-export default ArtWorkFavoritesList;

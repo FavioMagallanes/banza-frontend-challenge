@@ -9,7 +9,7 @@ type InputSearchProps = {
   onChangeText: (text: string) => void;
 };
 
-const InputSearch: FC<InputSearchProps> = ({ placeholder, onChangeText }) => {
+export const SearchInput: FC<InputSearchProps> = ({ placeholder, onChangeText }) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -26,8 +26,6 @@ const InputSearch: FC<InputSearchProps> = ({ placeholder, onChangeText }) => {
     </View>
   );
 };
-
-export default InputSearch;
 
 const styles = StyleSheet.create({
   container: {

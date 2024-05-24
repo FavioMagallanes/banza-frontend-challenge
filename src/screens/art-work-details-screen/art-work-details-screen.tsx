@@ -1,25 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../interfaces/navigation';
-
 import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { theme } from '../../../theme';
-import ArtworksContext, { ArtworksContextType } from '../../context/art-work-context';
 import { Data } from '../../interfaces/response-data';
 import { ArtWorkDetail } from '../../components/art-work-details/art-work-detail';
+import ArtworksContext from '../../context/art-work-context';
 
 type ArtworkDetailsScreenRouteProp = RouteProp<RootStackParamList, 'ArtworkDetails'>;
 
-export const ArtworkDetailsScreen = ({ route }: { route: ArtworkDetailsScreenRouteProp }) => {
+interface ArtworkDetailsScreenProps {
+  route: ArtworkDetailsScreenRouteProp;
+}
+
+export const ArtworkDetailsScreen = ({ route }: ArtworkDetailsScreenProps) => {
   const { id } = route.params;
-  const context = useContext<ArtworksContextType | undefined>(ArtworksContext);
-
-  if (!context) {
-    throw new Error('ArtworksContext must be used within an ArtworksProvider');
-  }
-
-  const { artworks, loading } = context;
   const [artWork, setArtWork] = useState<Data | null>(null);
+  const { loading, artworks } = useContext(ArtworksContext)!;
 
   useEffect(() => {
     if (!loading && artworks.length > 0) {

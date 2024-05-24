@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Image, Text, View, useWindowDimensions, ScrollView } from 'react-native';
 import { Data } from '../../interfaces/response-data';
 import { formatValue, removeHtmlTags } from '../../helpers/helpers';
-import GoBackButton from '../ui/go-back-button';
+import { GoBackButton } from '../ui/go-back-button';
 import { styles } from './art-work-detail.styles';
 
 interface ArtWorkDetailHeaderProps {

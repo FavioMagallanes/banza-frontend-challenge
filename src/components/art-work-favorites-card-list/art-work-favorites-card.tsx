@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-import { theme } from '../../../theme';
+import { truncateTitle } from '../../helpers/helpers';
 import { IconComponent } from '../icon/icon';
 import { Data } from '../../interfaces/response-data';
+import { theme } from '../../../theme';
 import { styles } from './art-work-favorites-card-list.styles';
 
 interface ArtWorkFavoritesCardProps {
@@ -11,9 +12,6 @@ interface ArtWorkFavoritesCardProps {
   source: string;
   handleRemoveFavorite: (id: number) => void;
 }
-
-const truncateTitle = (title: string, maxLength: number) =>
-  title.length > maxLength ? `${title.substring(0, maxLength)}...` : title;
 
 export const ArtWorkFavoritesCard: FC<ArtWorkFavoritesCardProps> = ({
   item,
