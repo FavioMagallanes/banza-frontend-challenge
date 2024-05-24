@@ -3,8 +3,7 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import ArtworksContext from '../../context/art-work-context';
 import { useFilteredArtworks } from '../../hooks/use-filtered-art-works';
 import { useFavorites } from '../../hooks/use-favorites';
-import { StyleSheet, SafeAreaView, ActivityIndicator, Text, Pressable } from 'react-native';
-import { Hero } from '../../components/ui/hero';
+import { StyleSheet, SafeAreaView, Text, Pressable } from 'react-native';
 import SearchInput from '../../components/search-input/search-input';
 import SearchTab from '../../components/search-tab/search-tab';
 import { theme } from '../../../theme';
@@ -12,6 +11,7 @@ import { tabs } from '../../constants/tabs';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { IconComponent } from '../../components/icon/icon';
 import ArtworkCardsList from '../../components/art-work-cards-list/art-work-cards-list';
+import { LoaderAnimation } from '../../components/ui/loader-animation';
 
 const ArtworkScreen: FC = () => {
   const { artworks, loading, error } = useContext(ArtworksContext)!;
@@ -41,12 +41,11 @@ const ArtworkScreen: FC = () => {
   };
 
   if (loading) {
-    return <ActivityIndicator style={styles.spinner} size="large" color={theme.colors.primary} />;
+    return <LoaderAnimation />;
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Hero />
       <SearchInput placeholder="Search by artist name" onChangeText={handleSearch} />
       <SearchTab tabs={tabs} activeTab={activeTab} onChangeTab={handleTabChange} />
       {error ? <Text style={styles.error}>{error}</Text> : null}

@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   background: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: theme.colors.primary,
-    opacity: 0.5,
   },
   loaderContainer: {
     position: 'absolute',
