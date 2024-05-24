@@ -21,7 +21,7 @@ const Tab: FC<TabProps> = ({ label, isActive, onPress }) => {
 
 const styles = StyleSheet.create({
   tab: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
     marginHorizontal: 4,

@@ -5,14 +5,13 @@ import useFavoriteArtworks from '../../hooks/use-favorites-art-works';
 import ArtWorkFavoritesList from '../../components/art-work-favorites-list/art-work-favorites-list';
 import { theme } from '../../../theme';
 import { useNavigation } from '@react-navigation/native';
-import { IconComponent } from '../../components/icon/icon'; // Suponiendo que tienes un componente IconComponent
+import { IconComponent } from '../../components/icon/icon';
 
 const ArtWorksFavoritesScreen: FC = () => {
   const { favorites, removeFavorite, clearFavorites } = useFavoriteArtworks();
   const { artworks } = useContext(ArtworksContext)!;
   const [numColumns, setNumColumns] = useState(1);
   const navigation = useNavigation();
-
   const favoritesWithData = artworks.filter(artwork => favorites.includes(artwork.id.toString()));
 
   useEffect(() => {
@@ -20,16 +19,7 @@ const ArtWorksFavoritesScreen: FC = () => {
   }, [favorites]);
 
   const handleRemoveFavorite = async (id: number) => await removeFavorite(id.toString());
-
   const handleClearFavorites = async () => await clearFavorites();
-
-  if (favoritesWithData.length === 0) {
-    return (
-      <View style={styles.emptyMessageContainer}>
-        <Text style={styles.emptyMessage}>No favorites found.</Text>
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>
@@ -37,26 +27,29 @@ const ArtWorksFavoritesScreen: FC = () => {
         <Pressable onPress={() => navigation.goBack()}>
           <IconComponent name="arrow-back" size={24} color={theme.colors.primary} />
         </Pressable>
-        <Pressable onPress={handleClearFavorites}>
-          <Text style={styles.clearButton}>Clear All</Text>
-        </Pressable>
+        {favoritesWithData.length > 0 && (
+          <Pressable onPress={handleClearFavorites}>
+            <Text style={styles.clearButton}>Clear list</Text>
+          </Pressable>
+        )}
       </View>
-      <ArtWorkFavoritesList
-        data={favoritesWithData}
-        numColumns={numColumns}
-        handleRemoveFavorite={handleRemoveFavorite}
-      />
+      {favoritesWithData.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <IconComponent name="heart-dislike-outline" size={48} color={theme.colors.placeholder} />
+          <Text style={styles.emptyMessage}>No favorites found.</Text>
+        </View>
+      ) : (
+        <ArtWorkFavoritesList
+          data={favoritesWithData}
+          numColumns={numColumns}
+          handleRemoveFavorite={handleRemoveFavorite}
+        />
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  emptyMessageContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.colors.background,
-  },
   container: {
     flex: 1,
     padding: 8,
@@ -69,19 +62,24 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 16,
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   emptyMessage: {
     fontSize: 18,
     textAlign: 'center',
     color: theme.colors.text,
+    marginTop: 16,
   },
   clearButton: {
     fontSize: 16,
     color: theme.colors.primary,
-    borderRadius: 8,
+
     paddingVertical: 4,
     paddingHorizontal: 18,
     marginLeft: 8,
-    backgroundColor: theme.colors.surface,
   },
 });
 
