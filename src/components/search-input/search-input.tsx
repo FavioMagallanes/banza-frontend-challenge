@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { IconComponent } from '../icon/icon';
 import { TextInput } from 'react-native-gesture-handler';
 import { theme } from '../../../theme';
@@ -19,13 +19,14 @@ const InputSearch: FC<InputSearchProps> = ({ placeholder, onChangeText }) => {
           placeholderTextColor={theme.colors.placeholder}
           onChangeText={onChangeText}
         />
-        <View style={styles.search}>
+        <TouchableOpacity style={styles.searchContainer}>
           <IconComponent name="search" size={24} color={theme.colors.primary} />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
+
 export default InputSearch;
 
 const styles = StyleSheet.create({
@@ -36,20 +37,21 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    borderBottomColor: theme.colors.primary,
+    borderBottomWidth: 1,
   },
-  search: {
+  searchContainer: {
     backgroundColor: 'transparent',
     padding: 8,
+    position: 'absolute',
+    right: 0,
   },
-
   field: {
     flex: 1,
     backgroundColor: 'transparent',
     paddingLeft: 8,
-    paddingRight: 8,
+    paddingRight: 40,
     paddingVertical: 8,
     color: theme.colors.primary,
-    borderBottomColor: theme.colors.primary,
-    borderBottomWidth: 1,
   },
 });
