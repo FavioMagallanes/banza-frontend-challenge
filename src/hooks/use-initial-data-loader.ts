@@ -10,14 +10,14 @@ import { fetchArtworks } from '../api/art-institute-api';
  *   - artworks: La lista completa de obras de arte cargadas desde la API.
  *   - filteredArtworks: La lista filtrada de obras de arte según el tab activo.
  *   - setFilteredArtworks: Una función para actualizar la lista filtrada de obras de arte.
- *   - loading: Un indicador booleano que indica si se están cargando los datos.
+ *
  */
 export const useInitialDataLoader = (activeTab: string) => {
   const [artworks, setArtworks] = useState<Data[]>([]);
   const [filteredArtworks, setFilteredArtworks] = useState<Data[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { filterArtworks } = useFilterArtworks();
+  const filterArtworks = useFilterArtworks;
 
   // Carga los datos iniciales de obras de arte desde la API y filtra según el tab activo
   useEffect(() => {
