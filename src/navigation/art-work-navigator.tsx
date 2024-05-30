@@ -6,12 +6,11 @@ import { ArtworkScreen } from '../screens/art-work-screen/art-work-screen';
 import { ArtworkDetailsScreen } from '../screens/art-work-details-screen/art-work-details-screen';
 import { ArtWorksFavoritesScreen } from '../screens/art-work-favorites-screen/art-work-favorites-screen';
 import { RootStackParamList } from '../interfaces/navigation';
-import { theme } from '../../theme';
 import { IconComponent } from '../components/icon/icon';
+import { theme } from '../../theme';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-// Componente para el icono en el header
 const HeaderIcon = () => (
   <View style={{ marginLeft: 16 }}>
     <IconComponent name="color-palette-outline" size={30} color={theme.colors.primary} />
